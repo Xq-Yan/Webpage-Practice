@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>  
+        <style type = "text/css">
+            *{
+                margin : 0;
+                padding : 0;
+            }
+            #outer{
+                width: 720px;
+                margin: 50px auto;
+                padding: 10px;
+                background-color: greenyellow;
+                text-align:center;
+            }
+        </style>
+        <script type="text/javascript">
+           window.onload = function(){
+               var prev = document.getElementById("prev");
+               var next = document.getElementById("next");
+               var img = document.getElementsByTagName("img")[0];
+               var imgArr = ["img/1.jpg","img/2.jpg","img/3.jpg","img/4.jpg","img/5.jpg"];
+                var index = 0;
+                var info = document.getElementById("info");
+                
+               prev.onclick = function(){
+                   index--;
+                   if(index < 0){
+                       index = 0;
+                   }
+                   img.src = imgArr[index];
+                   info.innerHTML = "There are "+ imgArr.length +" photos, this is the photo " + (index + 1)+".";
+               };
+               next.onclick = function(){
+                   index++;
+                   if(index > imgArr.length - 1){
+                       index = 4;
+                   }
+                   img.src = imgArr[index];
+                   info.innerHTML = "There are "+ imgArr.length +" photos, this is the photo " + (index + 1)+".";
+               };
+           };
+        </script> 
+    </head>
+    <body>
+        <div id = "outer">
+            <p id = "info"></p>
+            <img src = img/1.jpg alt = "RiceBall">
+            <button id = "prev">Last</button>
+            <button id = "next">Next</button>
+        </div>
+    </body>
+</html>

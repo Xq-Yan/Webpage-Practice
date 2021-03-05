@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style type="text/css">
+            * {
+                margin: 0;
+                padding: 0;
+            }
+    
+            #box1 {
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                position: absolute;
+                left: 0;
+            }
+        </style>  
+        <script type="text/javascript">
+         window.onload = function () {
+            var box1 = document.getElementById("box1");
+            var right = document.getElementById("right");
+            var left = document.getElementById("left");
+            // go right
+            right.onclick = function () {
+                move(box1, 800, 10);
+            };
+            // go left
+            left.onclick = function () {
+                move(box1, 0, 10);
+            };
+        };
+        var timer;
+        function move(obj, target, speed) {
+            clearInterval(timer);
+            var current = parseInt(getComputedStyle(obj, null)["left"]);		
+            if (current > target) {
+                speed = -speed;
+            }
+            timer = setInterval(function () {
+                var oldValue = parseInt(getComputedStyle(obj, null)["left"]);
+                var newValue = oldValue + speed;
+                if ((speed < 0 && newValue < target) || (speed > 0 && newValue > target)) {
+                    newValue = target;
+                }
+                obj.style.left = newValue + "px";
+                if (newValue == target) clearInterval(timer);
+            }, 30);
+        }
+        </script> 
+    </head>
+    <body>
+        <button id="right">Click to move right</button>
+        <button id="left">Click to move left</button>
+        <br /><br />
+        <div id="box1"></div>
+        <div style="width: 0; height: 1000px; border-left:1px black solid; position: absolute; left: 800px;top:0;"></div>
+    </body>
+</html>
